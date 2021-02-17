@@ -10,6 +10,8 @@ import com.vanessabzr.entity.Pedido;
 
 public interface PedidoRepository extends CrudRepository<Pedido, Long> {
 	
+//	Agragando base de datos al git
+	
 	@Query(value = "SELECT p FROM Pedido p WHERE p.estado = 'NUEVO'")
 	List<Pedido> listarNuevos();
 	
