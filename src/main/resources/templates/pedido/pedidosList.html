@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+	crossorigin="anonymous">
+<link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	rel="stylesheet">
+<title>Vanessa Bzr | Pedidos</title>
+</head>
+<body>
+
+<header th:insert="fragments/menu :: menu"></header>
+	
+	<div class="container mt-5">
+	
+	<div class="row justify-content-end mt-5">
+		<div class="col-md-auto">
+			<a th:href="@{/crear}" class="btn btn-success" role="button"
+				title="Nuevo Pedido"> <i class="fas fa-plus"></i> Nuevo
+				Pedido
+			</a>
+		</div>
+	</div>
+	
+		<table class="table table-hover table-striped mt-5">
+			<thead>
+				<tr>
+					<th scope="col">Nombre</th>
+					<th scope="col">Producto</th>
+					<th scope="col">Tienda</th>
+					<th scope="col">Costo Tienda</th>
+					<th scope="col">Costo Cliente</th>
+					<th scope="col">Ganancia</th>
+					<th scope="col">Anticipo</th>
+					<th scope="col">Pago Restante</th>
+					<th scope="col">Opciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="pedido: ${pedidosList}">
+					<td th:text="${pedido.nombreCliente}"></td>
+					<td th:text="${pedido.producto}"></td>
+					<td th:text="${pedido.tienda}"></td>
+					<td th:text="'$' + ${pedido.costoTienda}"></td>
+					<td th:text="'$' + ${pedido.costoCliente}"></td>
+					<td th:text="'$' + ${pedido.ganancia}"></td>
+					<td th:text="'$' + ${pedido.anticipo}"></td>
+					<td th:text="'$' + ${pedido.restaPago}"></td>
+					<td><a role="button"
+						th:href="@{/entregar/{id} (id=${pedido.idPedido})}"
+						class="btn btn-success" data-toggle="tooltip" data-placement="top"
+						title="Entregar Pedido"><i class="fas fa-check-square"></i></a>
+						
+						<a role="button"
+						th:href="@{/cancelar/{id} (id=${pedido.idPedido})}"
+						class="btn btn-primary" data-toggle="tooltip" data-placement="top"
+						title="Cancelar Pedido"><i class="fas fa-times"></i></a>
+						
+						<a role="button"
+						th:href="@{/eliminar/{id} (id=${pedido.idPedido})}"
+						class="btn btn-danger" data-toggle="tooltip" data-placement="top"
+						title="Eliminar Pedido"><i class="fas fa-trash-alt"></i></a>
+						
+					</td>
+						
+				</tr>
+
+			</tbody>
+		</table>
+
+	</div>
+
+</body>
+</html>
